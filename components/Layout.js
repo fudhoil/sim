@@ -33,7 +33,7 @@ export default function Layout({ cookies, children }) {
                 />
                 <Sidebar />
             </main>
-            <div className="flex flex-col items-center justify-center w-full flex-1 p-20 text-center">
+            <div className="flex flex-col items-center justify-center w-full flex-1 p-20 pl-32 text-center">
                 {children}
             </div>
         </div>
