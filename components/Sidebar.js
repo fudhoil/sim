@@ -66,8 +66,9 @@ const Sidebar = () => {
                                         href='/'
                                         style={{
                                             display: 'flex',
+                                            backgroundColor: router.pathname === '/' ? '#2d3748' : '',
                                         }}
-                                        className={`'flex items-center space-x-2 p-2 rounded-md hover:bg-gray-700' ${router.pathname === '/' ? 'bg-gray-700' : ''}`}
+                                        className='flex items-center space-x-2 p-2 rounded-md hover:bg-gray-700'
                                     >
                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2 2m0 0l7 7 7-7m-7 7V3" />
@@ -82,8 +83,9 @@ const Sidebar = () => {
                                         href='/employees'
                                         style={{
                                             display: 'flex',
+                                            backgroundColor: router.pathname === '/employees' ? '#2d3748' : '',
                                         }}
-                                        className={`'flex items-center space-x-2 p-2 rounded-md hover:bg-gray-700' ${router.pathname === '/employees' ? 'bg-gray-700' : ''}`}
+                                        className='flex items-center space-x-2 p-2 rounded-md hover:bg-gray-700'
                                     >
                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5zm0 0l-9 5 9 5 9-5-9-5z" />
@@ -97,7 +99,7 @@ const Sidebar = () => {
                                 </div>
                             </div>)
                     ) : (
-                        <div id='sidebar' className="flex flex-col w-full max-w-xs p-4 h-screen bg-gray-800">
+                        <div id='sidebar' className="flex flex-col w-full max-w-xs p-4 h-screen bg-[#1a202c]">
                             <div className="flex flex-col w-full border-b-2 border-white">
                                 <Link href='/'>
                                     <div className="flex items-center justify-center w-full h-10">
@@ -112,8 +114,9 @@ const Sidebar = () => {
                                     href='/'
                                     style={{
                                         display: 'flex',
+                                        backgroundColor: router.pathname === '/' ? '#2d3748' : '',
                                     }}
-                                    className={`'flex items-center space-x-2 p-2 rounded-md hover:bg-gray-700' ${router.pathname === '/' ? 'bg-gray-700' : ''}`}
+                                    className='flex items-center space-x-2 p-2 rounded-md hover:bg-gray-700'
                                 >
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2 2m0 0l7 7 7-7m-7 7V3" />
@@ -127,8 +130,9 @@ const Sidebar = () => {
                                     href='/employees'
                                     style={{
                                         display: 'flex',
+                                        backgroundColor: router.pathname === '/employees' ? '#2d3748' : '',
                                     }}
-                                    className={`'flex items-center space-x-2 p-2 rounded-md hover:bg-gray-700' ${router.pathname === '/employees' ? 'bg-gray-700' : ''}`}
+                                    className='flex items-center space-x-2 p-2 rounded-md hover:bg-gray-700'
                                 >
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5zm0 0l-9 5 9 5 9-5-9-5z" />
