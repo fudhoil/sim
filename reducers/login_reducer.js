@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    user: null,
+    user: {},
     status: "idle",
     error: null,
 }
@@ -65,7 +65,7 @@ const loginSlice = createSlice({
         [loginAsync.fulfilled]: (state, action) => {
             state.status = "succeeded";
             state.user = action.payload;
-            window.location.reload();
+            state.error = null;
         },
         // @ts-ignore
         [loginAsync.rejected]: (state, action) => {
@@ -80,7 +80,6 @@ const loginSlice = createSlice({
         [logoutAsync.fulfilled]: (state, action) => {
             state.status = "succeeded";
             state.user = null;
-            window.location.reload();
         },
         // @ts-ignore
         [logoutAsync.rejected]: (state, action) => {

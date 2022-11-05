@@ -1,21 +1,19 @@
 import React, { useState, useEffect } from 'react'
-import { loginAsync } from '../reducers/login_reducer'
+import { loginAsync } from '../../reducers/login_reducer'
 import { useDispatch, useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
-import { getCookies } from 'cookies-next'
 
-const Login = ({ cookies }) => {
+const Login = () => {
     const [{ email, password }, setLogin] = useState({ email: "", password: "" })
     const dispatch = useDispatch()
     const { user, error, status } = useSelector(state => state.login)
     const router = useRouter()
-    const cookieValue = cookies.user
 
     useEffect(() => {
-        if (cookieValue) {
+        if (user) {
             router.push("/")
         }
-    }, [cookieValue, router, user])
+    }, [router, user])
 
     function handleChange(e) {
         const { name, value } = e.target;
@@ -64,7 +62,7 @@ const Login = ({ cookies }) => {
                         className='flex justify-center items-center w-full mt-6 h-[2px] bg-gray-300'
                     />
                     <div>
-                        {error && <p className="text-red-500">{error.error.split("/")[1].split(")")[0]}</p>}
+                        {error && <p className="text-red-500">{error.error.split("/")[1].split(")")[0].replaceAll('-', ' ')}</p>}
                     </div>
                     <button className='bg-blue-500 text-white px-4 py-1 rounded-md mt-5 ml-auto'
                         type='submit' onClick={handleSubmit}>
