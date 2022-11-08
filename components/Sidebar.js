@@ -29,7 +29,7 @@ const Sidebar = () => {
 
     return (
         <>
-            <div className="min-h-screen flex items-start justify-between fixed">
+            <div className="min-h-screen flex items-start justify-between z-20">
                 {
                     active ? (
                         isMobile ? "" : (
@@ -96,6 +96,23 @@ const Sidebar = () => {
                                             </h1>
                                             : ""}
                                     </Link>
+                                    <Link
+                                        href='/register'
+                                        style={{
+                                            display: 'flex',
+                                            backgroundColor: router.pathname === '/register' ? '#2d3748' : '',
+                                        }}
+                                        className='flex items-center space-x-2 p-2 rounded-md hover:bg-gray-700'
+                                    >
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5zm0 0l-9 5 9 5 9-5-9-5z" />
+                                        </svg>
+                                        {show ?
+                                            <h1 className='text-gray-300'>
+                                                Register
+                                            </h1>
+                                            : ""}
+                                    </Link>
                                 </div>
                             </div>)
                     ) : (
@@ -139,6 +156,21 @@ const Sidebar = () => {
                                     </svg>
                                     <h1 className='text-gray-300'>
                                         Employees
+                                    </h1>
+                                </Link>
+                                <Link
+                                    href='/register'
+                                    style={{
+                                        display: 'flex',
+                                        backgroundColor: router.pathname === '/register' ? '#2d3748' : '',
+                                    }}
+                                    className='flex items-center space-x-2 p-2 rounded-md hover:bg-gray-700'
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5zm0 0l-9 5 9 5 9-5-9-5z" />
+                                    </svg>
+                                    <h1 className='text-gray-300'>
+                                        Register
                                     </h1>
                                 </Link>
                             </div>
