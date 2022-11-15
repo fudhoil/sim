@@ -41,12 +41,3 @@ export default function Layout({ cookies, children }) {
         </div>
     )
 }
-
-export const getServerSideProps = async (context) => {
-    const cookies = context.req.cookies
-    return {
-        props: {
-            cookies
-        }
-    }
-}

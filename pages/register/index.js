@@ -2,7 +2,11 @@ import React from 'react'
 import Layout from '../../components/Layout'
 
 const Register = ({ cookies }) => {
-    const [{ email, password }, setState] = React.useState({ email: '', password: '' })
+    const [{
+        email,
+        password,
+        employee_id,
+    }, setState] = React.useState({ email: '', password: '', employee_id: '' })
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -10,9 +14,39 @@ const Register = ({ cookies }) => {
             ...prevState,
             [name]: value,
         }))
-        console.log('name', name)
-        console.log('value', value)
+        console.log(name + ": " + value)
     }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        const data = await fetch('/api/register', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email,
+                password,
+                employee_id,
+            })
+        })
+        const response = await data.json()
+        if (response.error) {
+            console.log(response)
+        } else {
+            await fetch('/api/addEmployee', {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email,
+                    employee_id,
+                })
+            })
+        }
+    }
+
 
     return (
         <Layout cookies={cookies}>
@@ -54,17 +88,18 @@ const Register = ({ cookies }) => {
                             <select
                                 className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
                                 id='employee'
-                                name='employee'
-                            >
-                                <option value=''>Select Employee</option>
-                                <option value='1'>Employee 1</option>
-                                <option value='2'>Employee 2</option>
+                                name='employee_id'
+                                value={employee_id} onChange={handleChange}>
+                                <option value="">Select Employee</option>
+                                <option value="1">Employee 1</option>
+                                <option value="2" selected>Employee 2</option>
                             </select>
                         </div>
                         <div className='flex items-center justify-between mt-4'>
                             <button
                                 className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
-                                type='button'
+                                type='submit'
+                                onClick={handleSubmit}
                             >
                                 Register
                             </button>

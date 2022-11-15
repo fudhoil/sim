@@ -1,11 +1,13 @@
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 import { initializeApp } from "firebase/app"
-import { getFirestore } from "firebase/firestore"
+import { getFirestore } from "firebase-admin/firestore"
+import admin from "firebase-admin"
 import {
     getAuth,
     onAuthStateChanged,
     signOut,
     signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
 }
     from "firebase/auth"
 
@@ -18,9 +20,13 @@ const firebaseConfig = {
     appId: process.env.FIREBASE_APP_ID,
     measurementId: process.env.FIREBASE_MEASUREMENT_ID,
 };
-
-export const app = initializeApp(firebaseConfig)
-export const db = getFirestore(app)
+if (!admin.apps.length) {
+    admin.initializeApp(firebaseConfig, 'db')
+} else {
+    admin.app('db')
+}
+const app = initializeApp(firebaseConfig, 'app')
+export const db = admin.firestore()
 export const auth = getAuth(app)
 export const isLogged = () => {
     return new Promise((resolve, reject) => {
@@ -33,6 +39,22 @@ export const isLogged = () => {
         })
     })
 }
+
+export const createNewUser = (email, password) => {
+    return new Promise((resolve, reject) => {
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                const user = userCredential.user
+                resolve(user)
+            })
+            .catch((error) => {
+                const errorCode = error.code
+                const errorMessage = error.message
+                reject(errorCode, errorMessage)
+            })
+    })
+}
+
 export const login = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password)
 }
